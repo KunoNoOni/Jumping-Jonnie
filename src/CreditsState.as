@@ -15,7 +15,7 @@ package
 		
 		override public function create():void
 		{
-			line1 = new FlxText(60,FlxG.height, FlxG.width - 100, "Produced/Directed/Programmed/Sound\nWilliam LaGamba (KunoNoOni)\n\n\n\n\n\n\n\n\n\nThanks for Playing!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPRESS [x] PLAY AGAIN");
+			line1 = new FlxText(60,FlxG.height, FlxG.width - 100, "Programming & Sound & Art\n\nWilliam 'KunoNoOni' LaGamba\n\n\n\n\n\n\n\n\nThanks for Playing!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPRESS [x] PLAY AGAIN");
 			line1.setFormat(null,20,0xFF0000, "center");
 			add(line1);
 		}
@@ -27,7 +27,7 @@ package
 			else
 				line1.velocity.y = 0;
 			if(FlxG.keys.X)
-				FlxG.switchState(new StoryState());	//<--- using new state change code for flixel 2.5		
+				FlxG.switchState(new TitleState());	//<--- using new state change code for flixel 2.5		
 			super.update();
 		}
 	}

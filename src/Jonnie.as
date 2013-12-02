@@ -4,6 +4,8 @@ package
 
 	public class Jonnie extends FlxSprite
 	{	
+		private var _jump:int;
+		
 		public function Jonnie(X:Number,Y:Number)
 		{
 			super(X*20, Y*20);
@@ -13,37 +15,46 @@ package
 			addAnimation("jumping",[4],15,true);
 			
 			this.maxVelocity.x = 100;
-			this.maxVelocity.y = 450;
+			this.maxVelocity.y = 400;
 			this.acceleration.y = 450;
-			this.drag.x = this.maxVelocity.x*4;
+			this.offset.x = 5;
+			this.offset.y = 10;
+			this.width = 10;
+			this.height = 10;
 
 		}
 		
 		override public function update():void
 		{
-			this.acceleration.x = 0;
-		
-		 	if(FlxG.keys.A || FlxG.keys.LEFT)
+			//this.acceleration.x = 0;
+			this.velocity.x = 0;
+			
+			if(!Registry.doorVisible || !Registry.textVisible)
 			{
-				this.facing = LEFT;
-				this.acceleration.x = -this.maxVelocity.x*4;
+			 	if(FlxG.keys.A || FlxG.keys.LEFT)
+				{
+					this.facing = LEFT;
+					//this.acceleration.x = -this.maxVelocity.x*4;
+					this.velocity.x = -this.maxVelocity.x;
+				}
+				
+				if(FlxG.keys.D || FlxG.keys.RIGHT)
+				{
+					this.facing = RIGHT;
+					//this.acceleration.x = this.maxVelocity.x*4;
+					this.velocity.x = this.maxVelocity.x;
+				}
+				
+				if(FlxG.keys.justPressed('SPACE') && Registry.onGround)
+				{
+					FlxG.play(Registry._jump,.2);
+					this.velocity.y = -this.maxVelocity.y/2;
+				}
 			}
 			
-			if(FlxG.keys.D || FlxG.keys.RIGHT)
-			{
-				this.facing = RIGHT;
-				this.acceleration.x = this.maxVelocity.x*4;
-
-			}
-			
-			if(FlxG.keys.justPressed('SPACE') && Registry.onGround)
-			{
-				FlxG.play(Registry._jump,.2);
-				this.velocity.y = -this.maxVelocity.y/2;
-			}
 			if(this.velocity.y != 0)
 				this.play("jumping");
-			else if(this.acceleration.x == 0)
+			else if(this.velocity.x == 0)
 				this.play("standing");
 			else
 				this.play("running");

@@ -11,14 +11,13 @@ package
 		{
 			super(X*20,Y*20);
 			loadGraphic(Registry._girl,true,false,20,20);
-			addAnimation("stand",[0],15);
-			addAnimation("scream0",[0],15);
-			addAnimation("scream1",[1],15);
-			addAnimation("scream2",[2],15);
-			addAnimation("scream3",[3],15);
-			addAnimation("scream4",[4],15);
-			addAnimation("scream5",[5],15);
-	
+			addAnimation("stand",[0],1);
+			addAnimation("scream0",[0],1);
+			addAnimation("scream1",[1],1);
+			addAnimation("scream2",[2],1);
+			addAnimation("scream3",[3],1);
+			addAnimation("scream4",[4],1);
+			addAnimation("scream5",[5],1);
 		}
 		
 		override public function update():void

@@ -23,16 +23,21 @@ package
 			ending.setFormat(null,25,0xFF0000, "right");
 			add(ending);
 			
-			
-			var instruct:FlxText = new FlxText(175,450, 300, "PRESS [x] TO PLAY");
-			instruct.setFormat(null,25,0xFFFFFF, "center");
+			var instruct:FlxText = new FlxText(75,400, 500, "PRESS [i] FOR INSTRUCTIONS");
+			instruct.setFormat(null,25,0x00FF00, "center");
 			add(instruct);
+			
+			var play:FlxText = new FlxText(175,450, 300, "PRESS [x] TO PLAY");
+			play.setFormat(null,25,0xFFFFFF, "center");
+			add(play);
 		}
 		
 		override public function update():void
 		{
 			if(FlxG.keys.X)
-				FlxG.switchState(new PlayState());	//<--- using new state change code for flixel 2.5		
+				FlxG.switchState(new PlayState());
+			if(FlxG.keys.I)
+				FlxG.switchState(new InstructionState());
 			super.update();
 		}
 	}

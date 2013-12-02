@@ -6,7 +6,8 @@ package
 	{
 		public static var eBalls:int = 0;
 		public static var eBallsGotten:int = 0;
-		public static var score:int = 0;
+		public static var tempScore:int = 0;
+		public static var score:int = tempScore;
 		public static var lives:int = 5;
 		public static var currLvl:int = 1;
 		public static var startX:int = 0;
@@ -17,19 +18,15 @@ package
 		public static var mapWidth:Number = 32;
 		public static var mapHeight:Number = 24;
 		public static var checkTile:Number = 0;
-		public static var snakeLWaypoint:Boolean = false;
-		public static var snakeRWaypoint:Boolean = false;
-		public static var batLWaypoint:Boolean = false;
-		public static var batRWaypoint:Boolean = false;
-		public static var ghostLWaypoint:Boolean = false;
-		public static var ghostRWaypoint:Boolean = false;
-		public static var spiderLWaypoint:Boolean = false;
-		public static var spiderRWaypoint:Boolean = false;		
-		public static var lwaypoints:FlxGroup = new FlxGroup();
-		public static var rwaypoints:FlxGroup = new FlxGroup();
+		public static var doorVisible:Boolean = false;
+		public static var textVisible:Boolean = false;
 		public static var timerSet:Boolean = false;
 		public static var levels:Array = ["null","_level1","_level2","_level3","_level4","_level5","_level6",
 			"_level7","_level8","_level9","_level10"];
+		public static var bgrounds:Array = ["null","b_level1","b_level1","b_level1","b_level1","b_level1","b_level1",
+			"b_level1","b_level1","b_level1","b_level1"];
+		public static var energyBalls:Array = ["null","e_level1","e_level2","e_level3","e_level4","e_level5","e_level6",
+			"e_level7","e_level8","e_level9","e_level10"];
 		public static var savingGirl:Boolean = true;
 
 		
@@ -49,7 +46,10 @@ package
 		[Embed(source = 'Sprites/rightWaypoint.png')] static public var _rWaypoint:Class;
 		[Embed(source = 'Sprites/jonnie.png')] static public var _player:Class;
 		[Embed(source = 'Sprites/jennie.png')] static public var _girl:Class;
-		[Embed(source = 'Sprites/title.png')] static public var _title:Class;
+		[Embed(source = 'Sprites/title2.png')] static public var _title:Class;
+		[Embed(source = 'Sprites/candle.png')] static public var _candle:Class;
+		[Embed(source = 'Sprites/backgroundTiles.png')] static public var _backgroundTiles:Class;
+		[Embed(source = 'Sprites/spark.png')] static public var _spark:Class;
 		
 		[Embed(source = 'Maps/mapCSV_Group1_Map1.csv', mimeType = 'application/octet-stream')] static public var _level1:Class;
 		[Embed(source = 'Maps/mapCSV_Group1_Map2.csv', mimeType = 'application/octet-stream')] static public var _level2:Class;
@@ -62,9 +62,23 @@ package
 		[Embed(source = 'Maps/mapCSV_Group1_Map9.csv', mimeType = 'application/octet-stream')] static public var _level9:Class;
 		[Embed(source = 'Maps/mapCSV_Group1_Map10.csv', mimeType = 'application/octet-stream')] static public var _level10:Class;
 		
+		[Embed(source = 'Maps/mapCSV_Group2_Map1.csv', mimeType = 'application/octet-stream')] static public var b_level1:Class;
+		
+		[Embed(source = 'Maps/mapCSV_Group3_Map1.csv', mimeType = 'application/octet-stream')] static public var e_level1:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map2.csv', mimeType = 'application/octet-stream')] static public var e_level2:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map3.csv', mimeType = 'application/octet-stream')] static public var e_level3:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map4.csv', mimeType = 'application/octet-stream')] static public var e_level4:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map5.csv', mimeType = 'application/octet-stream')] static public var e_level5:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map6.csv', mimeType = 'application/octet-stream')] static public var e_level6:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map7.csv', mimeType = 'application/octet-stream')] static public var e_level7:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map8.csv', mimeType = 'application/octet-stream')] static public var e_level8:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map9.csv', mimeType = 'application/octet-stream')] static public var e_level9:Class;
+		[Embed(source = 'Maps/mapCSV_Group3_Map10.csv', mimeType = 'application/octet-stream')] static public var e_level10:Class;
+		
 		[Embed(source = 'sounds/jump.mp3')] static public var _jump:Class;
 		[Embed(source = 'sounds/pickup.mp3')] static public var _pickup:Class;
 		[Embed(source = 'sounds/brickfall.mp3')] static public var _brickfall:Class;
+		[Embed(source = 'sounds/door.mp3')] static public var _doorAppear:Class;
 		
 		
 		public function Registry()
